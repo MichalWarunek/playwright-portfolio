@@ -1,9 +1,10 @@
-import { expect, Page, Locator } from '@playwright/test';
+import { expect, Page, Locator } from "@playwright/test";
 
 export interface LoginInfo {
   username?: string;
   password?: string;
   title?: string;
+  errorMessage?: string;
 }
 
 export class LoginPage {
@@ -13,13 +14,15 @@ export class LoginPage {
   readonly passwordInput: Locator;
   readonly loginButton: Locator;
   readonly titleLabel: Locator;
+  readonly errorMessageText: Locator;
 
   constructor(page: Page) {
     this.page = page;
-    this.usernameInput = page.getByTestId('username');
-    this.passwordInput = page.getByTestId('password');
-    this.loginButton = page.getByRole('button', {name: 'Login'});
-    this.titleLabel = page.getByTestId('title');
+    this.usernameInput = page.getByTestId("username");
+    this.passwordInput = page.getByTestId("password");
+    this.loginButton = page.getByRole("button", { name: "Login" });
+    this.titleLabel = page.getByTestId("title");
+    this.errorMessageText = page.getByTestId("error");
   }
 
   async setUsername(userName: string): Promise<void> {
@@ -32,7 +35,6 @@ export class LoginPage {
     await this.loginButton.click();
   }
 
-
   async fill(data: LoginInfo): Promise<void> {
     if (data.username) await this.setUsername(data.username);
     if (data.password) await this.setPassword(data.password);
@@ -40,5 +42,7 @@ export class LoginPage {
 
   async validate(data: LoginInfo): Promise<void> {
     if (data.title) await expect(this.titleLabel).toHaveText(data.title);
+    if (data.errorMessage)
+      await expect(this.errorMessageText).toHaveText(data.errorMessage);
   }
 }
