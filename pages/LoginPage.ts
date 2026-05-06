@@ -45,4 +45,9 @@ export class LoginPage {
     if (data.errorMessage)
       await expect(this.errorMessageText).toHaveText(data.errorMessage);
   }
+  async login(data: LoginInfo): Promise<void> {
+    if (data.username) await this.setUsername(data.username);
+    if (data.password) await this.setPassword(data.password);
+    await this.clickLogin();
+  }
 }

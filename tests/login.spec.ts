@@ -1,5 +1,4 @@
-import { test } from "@playwright/test";
-import { LoginPage } from "../pages/LoginPage";
+import { test } from "../fixtures";
 
 const validLogin = {
   username: process.env.USER_EMAIL!,
@@ -25,31 +24,29 @@ const missingPasswordLogin = {
 };
 
 test.describe("Login test", () => {
-  let loginPage!: LoginPage;
   test.beforeEach(async ({ page }) => {
-    loginPage = new LoginPage(page);
     await page.goto("/");
   });
 
-  test("should navigate to Products page on valid credentials", async () => {
+  test("should navigate to Products page on valid credentials", async ({loginPage}) => {
     await loginPage.fill(validLogin);
     await loginPage.clickLogin();
     await loginPage.validate(validLogin);
   });
 
-  test("should display error message on invalid credentials", async () => {
+  test("should display error message on invalid credentials", async ({loginPage}) => {
     await loginPage.fill(invalidLogin);
     await loginPage.clickLogin();
     await loginPage.validate(invalidLogin);
   });
 
-  test("should display error message on missing username", async () => {
+  test("should display error message on missing username", async ({loginPage}) => {
     await loginPage.fill(missingUsernameLogin);
     await loginPage.clickLogin();
     await loginPage.validate(missingUsernameLogin);
   });
 
-  test("should display error message on missing password", async () => {
+  test("should display error message on missing password", async ({loginPage}) => {
     await loginPage.fill(missingPasswordLogin);
     await loginPage.clickLogin();
     await loginPage.validate(missingPasswordLogin);
