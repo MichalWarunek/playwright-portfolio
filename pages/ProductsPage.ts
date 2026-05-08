@@ -1,10 +1,11 @@
 import { expect, Page, Locator } from "@playwright/test";
 
 
-export const CART_BUTTON_TEXT = {
+const CART_BUTTON_TEXT = {
   add: 'Add to cart',
   remove: 'Remove',
 } as const;
+
 
 
 export class ProductsPage {
@@ -35,7 +36,9 @@ export class ProductsPage {
   async removeFromCart(product: Locator): Promise<void> {
     await product.click();
   }
-
+  async goToCart(): Promise<void> {
+    await this.cart.click();
+  }
   
   async validateAddButtonText(product: Locator): Promise<void> {
     await expect(product).toHaveText(CART_BUTTON_TEXT.add);

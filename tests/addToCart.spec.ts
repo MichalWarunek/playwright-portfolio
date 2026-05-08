@@ -13,10 +13,12 @@ test.describe("Add to cart test", () => {
     await loginPage.login(validLogin);
   });
 
-  test("should add product to cart", async ({productsPage}) => {
+  test("should add product to cart", async ({productsPage, cartPage}) => {
     await productsPage.addToCart(productsPage.productLocator);
     await productsPage.validateRemoveButtonText(productsPage.removeLocator);
     await productsPage.validateAddToCart('1');
+    await productsPage.goToCart();
+    await cartPage.validate();
   });
   
   test("should remove product from cart", async ({productsPage}) => {
