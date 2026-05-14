@@ -8,6 +8,8 @@ export class CartPage {
   readonly itemsCounter: Locator;
   readonly inventoryName: Locator;
   readonly inventoryPrice: Locator;
+  readonly continueButton: Locator;
+  readonly checkoutButton: Locator;
   private readonly EXPECTED_TITLE = 'Your Cart';
 
   constructor(page: Page) {
@@ -16,7 +18,17 @@ export class CartPage {
     this.itemsCounter = page.getByTestId('item-quantity');
     this.inventoryName = page.getByTestId('inventory-item-name');
     this.inventoryPrice = page.getByTestId('inventory-item-price');
+    this.continueButton = page.getByTestId('continue-shopping');
+    this.checkoutButton = page.getByTestId('checkout');
   }
+
+async clickContinueShopping(): Promise<void> {
+await this.continueButton.click();
+}
+
+async clickCheckout(): Promise<void> {
+  await this.checkoutButton.click();
+}
 
 async validate(): Promise<void> {
   await expect(this.titleLabel).toHaveText(this.EXPECTED_TITLE);
