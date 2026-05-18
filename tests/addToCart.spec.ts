@@ -41,6 +41,8 @@ test.describe("Add to cart test", () => {
     await productsPage.removeFromCart(productsPage.removeLocator);
     await productsPage.validateAddButtonText(productsPage.productLocator);
     await productsPage.validateRemoveFromCart();
+    await productsPage.goToCart();
+    
   });
 
   test("should add two products to cart and remove one", async ({productsPage}) => {
