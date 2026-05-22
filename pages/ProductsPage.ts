@@ -6,6 +6,7 @@ const CART_BUTTON_TEXT = {
   remove: 'Remove',
 } as const;
 
+const TITLE = 'Products';
 
 
 export class ProductsPage {
@@ -17,6 +18,7 @@ export class ProductsPage {
   readonly removeSecondProductLocator: Locator;
   readonly cart: Locator;
   readonly cartBadge: Locator;
+  readonly pageTitle: Locator;
 
   constructor(page: Page) {
     this.page = page;
@@ -26,12 +28,12 @@ export class ProductsPage {
     this.removeSecondProductLocator = page.getByTestId("remove-sauce-labs-bike-light");
     this.cart = page.getByTestId("shopping-cart-link");
     this.cartBadge = page.getByTestId("shopping-cart-badge");
+    this.pageTitle = page.getByTestId("title");
   }
 
 
   async addToCart(product: Locator): Promise<void> {
     await product.click();
-    
   }
   async removeFromCart(product: Locator): Promise<void> {
     await product.click();
@@ -54,5 +56,8 @@ async validateAddToCart(numberOfProducts: string): Promise<void> {
 }
 async validateRemoveFromCart(): Promise<void> {
   await expect(this.cartBadge).toBeHidden();
+}
+async validatePageTitle(pageTitle: Locator): Promise<void> {
+  await expect(pageTitle).toHaveText(TITLE);
 }
 }
