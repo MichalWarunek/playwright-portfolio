@@ -13,6 +13,8 @@ const paymentInfo = {
   noZip:   { firstName: 'Michal', lastName: 'Warunek', zip: ''      },
 };
 
+const itemLocator = 'sauce-labs-backpack';
+
 const errorMessage = {
   firstName: 'Error: First Name is required',
   lastName: 'Error: Last Name is required',
@@ -23,7 +25,7 @@ test.describe("Your Information Step", () => {
   test.beforeEach(async ({ page, loginPage, productsPage, cartPage }) => {
     await page.goto("/");
     await loginPage.login(validLogin);
-    await productsPage.addToCart(productsPage.productLocator);
+    await productsPage.addToCart(itemLocator);
     await productsPage.goToCart();
     await cartPage.clickCheckout();
   });

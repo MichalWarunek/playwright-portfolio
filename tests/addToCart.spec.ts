@@ -6,9 +6,8 @@ const validLogin = {
 };
 
 const product = {
-  names: ['Sauce Labs Backpack', 'Sauce Labs Bike Light'],
-  price: '$29.99',
-  quantity: '1'
+  backpack: {id: 'sauce-labs-backpack', name: 'Sauce Labs Backpack', price: '$29.99' },
+  bikeLight: { id: 'sauce-labs-bike-light', name: 'Sauce Labs Bike Light', price: '$9.99' }
 };
 
 test.describe("Add to cart test", () => {
@@ -18,42 +17,42 @@ test.describe("Add to cart test", () => {
   });
 
   test("should add product to cart", async ({productsPage, cartPage}) => {
-    await productsPage.addToCart(productsPage.productLocator);
-    await productsPage.validateRemoveButtonText(productsPage.removeLocator);
-    await productsPage.validateAddToCart(product.quantity);
-    await productsPage.goToCart();
-    await cartPage.validate();
-    await cartPage.validateItems(product.quantity);
-    await cartPage.validateInventoryName(product.names[0]);
-    await cartPage.validatePrice(product.price);
-  });
-  
-  test("should remove product from cart", async ({productsPage, cartPage}) => {
-    await productsPage.addToCart(productsPage.productLocator);
-    await productsPage.validateRemoveButtonText(productsPage.removeLocator);
+    await productsPage.addToCart(product.backpack.id);
+    await productsPage.validateRemoveButtonText(product.backpack.id);
     await productsPage.validateAddToCart('1');
     await productsPage.goToCart();
     await cartPage.validate();
-    await cartPage.validateItems(product.quantity);
-    await cartPage.validateInventoryName(product.names[0]);
-    await cartPage.validatePrice(product.price);
+    await cartPage.validateItems('1');
+    await cartPage.validateInventoryName(product.backpack.name);
+    await cartPage.validatePrice(product.backpack.price);
+  });
+  
+  test("should remove product from cart", async ({productsPage, cartPage}) => {
+    await productsPage.addToCart(product.backpack.id);
+    await productsPage.validateRemoveButtonText(product.backpack.id);
+    await productsPage.validateAddToCart('1');
+    await productsPage.goToCart();
+    await cartPage.validate();
+    await cartPage.validateItems('1');
+    await cartPage.validateInventoryName(product.backpack.name);
+    await cartPage.validatePrice(product.backpack.price);
     await cartPage.clickContinueShopping();
-    await productsPage.removeFromCart(productsPage.removeLocator);
-    await productsPage.validateAddButtonText(productsPage.productLocator);
+    await productsPage.removeFromCart(product.backpack.id);
+    await productsPage.validateAddButtonText(product.backpack.id);
     await productsPage.validateRemoveFromCart();
     await productsPage.goToCart();
     
   });
 
   test("should add two products to cart and remove one", async ({productsPage}) => {
-    await productsPage.addToCart(productsPage.productLocator);
-    await productsPage.validateRemoveButtonText(productsPage.removeLocator);
+    await productsPage.addToCart(product.backpack.id);
+    await productsPage.validateRemoveButtonText(product.backpack.id);
     await productsPage.validateAddToCart('1');
-    await productsPage.addToCart(productsPage.secondProductLocator);
-    await productsPage.validateRemoveButtonText(productsPage.removeSecondProductLocator);
+    await productsPage.addToCart(product.bikeLight.id);
+    await productsPage.validateRemoveButtonText(product.bikeLight.id);
     await productsPage.validateAddToCart('2');
-    await productsPage.removeFromCart(productsPage.removeLocator);
-    await productsPage.validateAddButtonText(productsPage.productLocator);
+    await productsPage.removeFromCart(product.backpack.id);
+    await productsPage.validateAddButtonText(product.backpack.id);
     await productsPage.validateAddToCart('1');
   });
 });
