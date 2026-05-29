@@ -3,7 +3,10 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "test:docker": "docker run --rm --network host -v \"${PWD}:/work\" -w /work mcr.microsoft.com/playwright:v1.59.1-noble npx playwright test",
+    "test:docker:u": "docker run --rm --network host -v \"${PWD}:/work\" -w /work mcr.microsoft.com/playwright:v1.59.1-noble npx playwright test --update-snapshots"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",

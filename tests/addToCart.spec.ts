@@ -22,6 +22,7 @@ test.describe("Add to cart test", () => {
     await productsPage.validateAddToCart('1');
     await productsPage.goToCart();
     await cartPage.validate();
+    await cartPage.validateCartInventory();
     await cartPage.validateItems('1');
     await cartPage.validateInventoryName(product.backpack.name);
     await cartPage.validatePrice(product.backpack.price);

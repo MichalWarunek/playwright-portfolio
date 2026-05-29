@@ -42,4 +42,7 @@ async validateInventoryName (itemNames: string): Promise<void> {
 async validatePrice (price: string): Promise<void> {
   await expect(this.inventoryPrice).toHaveText(price);
 }
+async validateCartInventory(): Promise <void> {
+  await expect(this.page).toHaveScreenshot('cart.png');
+}
 }
