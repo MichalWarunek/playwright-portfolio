@@ -1,26 +1,10 @@
 import { test } from "../fixtures";
+import userData from "../test-data/user-data.json";
 
 const validLogin = {
   username: process.env.USER_EMAIL!,
   password: process.env.USER_PASSWORD!,
   title: "Products",
-};
-
-const invalidLogin = {
-  username: "blah",
-  password: "blah",
-  errorMessage:
-    "Epic sadface: Username and password do not match any user in this service",
-};
-
-const missingUsernameLogin = {
-  password: "blah",
-  errorMessage: "Epic sadface: Username is required",
-};
-
-const missingPasswordLogin = {
-  username: "blah",
-  errorMessage: "Epic sadface: Password is required",
 };
 
 test.describe("Login test", () => {
@@ -35,20 +19,20 @@ test.describe("Login test", () => {
   });
 
   test("should display error message on invalid credentials", async ({loginPage}) => {
-    await loginPage.fill(invalidLogin);
+    await loginPage.fill(userData.invalidLogin);
     await loginPage.clickLogin();
-    await loginPage.validate(invalidLogin);
+    await loginPage.validate(userData.invalidLogin);
   });
 
   test("should display error message on missing username", async ({loginPage}) => {
-    await loginPage.fill(missingUsernameLogin);
+    await loginPage.fill(userData.missingUsernameLogin);
     await loginPage.clickLogin();
-    await loginPage.validate(missingUsernameLogin);
+    await loginPage.validate(userData.missingUsernameLogin);
   });
 
   test("should display error message on missing password", async ({loginPage}) => {
-    await loginPage.fill(missingPasswordLogin);
+    await loginPage.fill(userData.missingPasswordLogin);
     await loginPage.clickLogin();
-    await loginPage.validate(missingPasswordLogin);
+    await loginPage.validate(userData.missingPasswordLogin);
   });
 });

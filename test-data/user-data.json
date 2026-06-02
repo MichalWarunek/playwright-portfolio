@@ -1,0 +1,27 @@
+{
+  "invalidLogin": {
+    "username": "blah",
+    "password": "blah",
+    "errorMessage":
+      "Epic sadface: Username and password do not match any user in this service"
+  },
+
+  "missingUsernameLogin": {
+    "username": "",
+    "password": "blah",
+    "errorMessage": "Epic sadface: Username is required"
+  },
+
+  "missingPasswordLogin": {
+    "username": "blah",
+    "password": "",
+    "errorMessage": "Epic sadface: Password is required"
+  },
+
+  "paymentInfo": {
+    "valid":   { "firstName": "Michal", "lastName": "Warunek", "zip": "11222", "errorMessage": "" },
+    "noFirst": { "firstName": "", "lastName": "Warunek", "zip": "11222", "errorMessage": "Error: First Name is required" },
+    "noLast":  { "firstName": "Michal", "lastName": "", "zip": "11222", "errorMessage": "Error: Last Name is required" },
+    "noZip":   { "firstName": "Michal", "lastName": "Warunek", "zip": "", "errorMessage": "Error: Postal Code is required" }
+  }
+}

@@ -1,0 +1,18 @@
+{
+     "product": {
+        "backpack": {"id": "sauce-labs-backpack", "name": "Sauce Labs Backpack", "price": "$29.99" },
+        "bikeLight": { "id": "sauce-labs-bike-light", "name": "Sauce Labs Bike Light", "price": "$9.99" }
+      },
+      "screenshots": {
+        "cartOneProduct": "cart-one-product.png",
+        "cartEmpty": "cart-empty.png",
+        "cartTwoProducts": "cart-two-products.png"
+      },
+      "receipt": {
+        "itemName": "Sauce Labs Backpack",
+        "paymentInformation": "SauceCard #31337",
+        "shippingInformation": "Free Pony Express Delivery!",
+        "totalPrice": "Total: $32.39"
+      },
+      "message": "Thank you for your order!"
+  }
