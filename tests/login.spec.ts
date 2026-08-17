@@ -1,4 +1,4 @@
-import { test } from "../fixtures";
+import { expect, test } from "../fixtures";
 import userData from "../test-data/user-data.json";
 
 const validLogin = {

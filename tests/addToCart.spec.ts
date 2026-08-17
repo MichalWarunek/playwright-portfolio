@@ -1,5 +1,5 @@
-  import { test } from "../fixtures";
-  import productData from "../test-data/product-data.json";
+import { test } from "../fixtures";
+import productData from "../test-data/product-data.json";
 
   const validLogin = {
     username: process.env.USER_EMAIL!,
