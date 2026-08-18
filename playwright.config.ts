@@ -1,8 +1,25 @@
 import { defineConfig, devices } from "@playwright/test";
 import dotenv from "dotenv";
 import path from "path";
+import * as fs from 'fs';
 
 dotenv.config({ path: path.resolve(__dirname, ".env") });
+
+
+const allureResultsDir = path.resolve(__dirname, 'allure-results');
+if (!fs.existsSync(allureResultsDir)) {
+  fs.mkdirSync(allureResultsDir, { recursive: true });
+}
+
+const envProperties = `
+Platform=${process.platform}
+Node.js_Version=${process.version}
+ENV=${process.env.TEST_ENV || 'Production'}
+Base_URL=${process.env.BASE_URL || 'https://saucedemo.com'}
+`;
+
+fs.writeFileSync(path.join(allureResultsDir, 'environment.properties'), envProperties.trim());
+
 /**
  * Read environment variables from file.
  * https://github.com/motdotla/dotenv
