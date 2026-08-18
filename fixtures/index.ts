@@ -3,12 +3,15 @@ import { LoginPage } from "../pages/LoginPage";
 import { ProductsPage } from "../pages/ProductsPage";
 import { CartPage } from "../pages/CartPage";
 import { CheckoutPage } from "../pages/CheckoutPage";
+import * as allure from 'allure-js-commons';
+
 
 type MyFixtures = {
   loginPage: LoginPage;
   productsPage: ProductsPage;
   cartPage: CartPage;
   checkoutPage: CheckoutPage;
+  allure: typeof allure;
 };
 
 export const test = base.extend<MyFixtures>({
@@ -24,6 +27,9 @@ export const test = base.extend<MyFixtures>({
   },
   checkoutPage: async ({ page }, use) => {
     await use(new CheckoutPage(page));
+  },
+  allure: async ({}, use) => {
+    await use(allure);
   },
 });
 

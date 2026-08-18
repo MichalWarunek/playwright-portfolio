@@ -11,7 +11,8 @@ test.describe("Products test", () => {
   test.beforeEach(async ({ page }) => {
     await page.goto("/");
   });
-  test("should handle missing product assets gracefully without breaking UI", async ({loginPage, productsPage}) => {
+  test("should handle missing product assets gracefully without breaking UI", async ({loginPage, productsPage, allure}) => {
+    await allure.story("Handling missing product images without breaking UI");
     await productsPage.mockImageFailure();
     await loginPage.fill(validLogin);
     await loginPage.clickLogin();

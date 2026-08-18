@@ -15,7 +15,8 @@ test.describe("Submit order", () => {
         await page.goto("/");
         await loginPage.login(validLogin);
     })
-    test("should submit order correctly", async ({productsPage, cartPage, checkoutPage}) => {
+    test("should submit order correctly", async ({productsPage, cartPage, checkoutPage, allure}) => {
+        await allure.story("Successful submitting order");
         await productsPage.addToCart(itemLocator);
         await productsPage.goToCart();
         await cartPage.clickCheckout();

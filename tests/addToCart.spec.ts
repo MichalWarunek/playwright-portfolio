@@ -13,7 +13,8 @@ import productData from "../test-data/product-data.json";
       await loginPage.login(validLogin);
     });
 
-    test("should add product to cart", async ({productsPage, cartPage}) => {
+    test("should add product to cart", async ({productsPage, cartPage, allure}) => {
+      await allure.story("Successful adding product to cart");
       await productsPage.addToCart(productData.product.backpack.id);
       await productsPage.validateRemoveButtonText(productData.product.backpack.id);
       await productsPage.validateAddToCart('1');
@@ -25,7 +26,8 @@ import productData from "../test-data/product-data.json";
       await cartPage.validatePrice(productData.product.backpack.price);
     });
     
-    test("should remove product from cart", async ({productsPage, cartPage}) => {
+    test("should remove product from cart", async ({productsPage, cartPage, allure}) => {
+      await allure.story("Successful removing product from cart");
       await productsPage.addToCart(productData.product.backpack.id);
       await productsPage.validateRemoveButtonText(productData.product.backpack.id);
       await productsPage.validateAddToCart('1');
@@ -44,7 +46,8 @@ import productData from "../test-data/product-data.json";
       
     });
 
-    test("should add two products to cart and remove one", async ({productsPage, cartPage}) => {
+    test("should add two products to cart and remove one", async ({productsPage, cartPage, allure}) => {
+      await allure.story("Successful adding and removing product from cart");
       await productsPage.addToCart(productData.product.backpack.id);
       await productsPage.validateRemoveButtonText(productData.product.backpack.id);
       await productsPage.validateAddToCart('1');

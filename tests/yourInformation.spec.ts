@@ -18,25 +18,29 @@ test.describe("Your Information Step", () => {
     await cartPage.clickCheckout();
   });
 
-  test("should process your information step correctly", async ({checkoutPage}) => {
+  test("should process your information step correctly", async ({checkoutPage, allure}) => {
+    await allure.story("Successful processing information step");
     await checkoutPage.fillPaymentInfo(userData.paymentInfo.valid);
     await checkoutPage.clickContinue();
     await checkoutPage.validateOverviewTitle();
   });
   
-  test("should show first name error message", async ({checkoutPage}) => {
+  test("should show first name error message", async ({checkoutPage, allure}) => {
+    await allure.story("Showing error message for processing information step with missing first name");
     await checkoutPage.fillPaymentInfo(userData.paymentInfo.noFirst);
     await checkoutPage.clickContinue();
     await checkoutPage.validateErrorMessage(userData.paymentInfo.noFirst.errorMessage);
   });
 
-  test("should show last name error message", async ({checkoutPage}) => {
+  test("should show last name error message", async ({checkoutPage, allure}) => {
+    await allure.story("Showing error message for processing information step with missing last name");
     await checkoutPage.fillPaymentInfo(userData.paymentInfo.noLast)
     await checkoutPage.clickContinue();
     await checkoutPage.validateErrorMessage(userData.paymentInfo.noLast.errorMessage);
   });
 
-  test("should show postal code error message", async ({checkoutPage}) => {
+  test("should show postal code error message", async ({checkoutPage, allure}) => {
+    await allure.story("Showing error message for processing information step with missing zip code");
     await checkoutPage.fillPaymentInfo(userData.paymentInfo.noZip);
     await checkoutPage.clickContinue();
     await checkoutPage.validateErrorMessage(userData.paymentInfo.noZip.errorMessage);
