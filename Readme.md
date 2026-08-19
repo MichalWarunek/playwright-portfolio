@@ -58,7 +58,7 @@ Pixel-perfect screenshot comparison across pages and dynamic components:
 
 1. **Clone the repository:**
    ```bash
-   git clone [https://github.com/michalwarunek/playwright-portfolio.git](https://github.com/michalwarunek/playwright-portfolio.git)
+   git clone https://github.com/michalwarunek/playwright-portfolio.git
    cd playwright-portfolio
    ```
 2. **Install dependencies:**

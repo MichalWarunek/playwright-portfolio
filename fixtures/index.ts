@@ -3,8 +3,7 @@ import { LoginPage } from "../pages/LoginPage";
 import { ProductsPage } from "../pages/ProductsPage";
 import { CartPage } from "../pages/CartPage";
 import { CheckoutPage } from "../pages/CheckoutPage";
-import * as allure from 'allure-js-commons';
-
+import * as allure from "allure-js-commons";
 
 type MyFixtures = {
   loginPage: LoginPage;
